@@ -28,8 +28,14 @@ def which(lines):
                 return None
     return None
 
+# code is an array of lines 
+# ignore lines that start with a #
 def translate(code, map):
     print('starting lexical translation')
+    
+    intermediate_code = ""
+    # todo for every word in the code that matches something in the map, make the change and store the changed version in 
+
 
 def main():
     print('general-language-compiler v1.0.0')
@@ -55,7 +61,9 @@ def main():
         raise InvalidLanguage('the language \"${lang}\" is invalid or unsupported'.format(lang = lang))
 
     print()
-    translate(SOURCE_CODE, trans_map)
+    SOURCE_CODE = lines
+    print(SOURCE_CODE)
+    # translate(SOURCE_CODE, trans_map)
 
 
 if __name__ == "__main__":
