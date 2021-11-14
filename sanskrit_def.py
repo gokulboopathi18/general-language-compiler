@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# vim: set fileencoding=<utf_8> :
-
 definitions = {
     "च": "and",
     "स्व": "auto",
@@ -43,4 +40,5 @@ definitions = {
     "पर्यन्तम्":"while"
 }
 
-print(definitions["चरबिन्दु"])
+if __name__ == "__main__":
+    print(definitions["चरबिन्दु"])

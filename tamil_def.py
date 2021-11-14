@@ -43,4 +43,5 @@ definitions = {
     "இருப்பின்":"while"
 }
 
-print(definitions["புள்ளி எண்"])
+if __name__ == "__main__":
+    print(definitions["புள்ளி எண்"])
