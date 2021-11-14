@@ -43,5 +43,7 @@ definitions = {
     "இருப்பின்":"while"
 }
 
+# token definitions
+
 if __name__ == "__main__":
     print(definitions["புள்ளி எண்"])
