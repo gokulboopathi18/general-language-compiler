@@ -1,4 +1,4 @@
-#CMD
+# CMD
 IN_FILE = "inputFile"
 
 

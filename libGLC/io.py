@@ -2,15 +2,15 @@ import argparse
 from os.path import isfile
 from libGLC.consts import *
 
+
 class InputFile():
     def __init__(self, filepath):
         if not isfile(filepath):
-            raise FileNotFoundError("\"{filename}\" doesn't exist".format(filename=filepath))
-        
+            raise FileNotFoundError(
+                "\"{filename}\" doesn't exist".format(filename=filepath))
 
         self.filepath = filepath
         self.file = open(filepath, 'r')
-
 
     def close(self):
         self.file.close()
@@ -20,10 +20,10 @@ class InputFile():
         return self.file.read()
 
 
-
 class CmdArgs():
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description="General Language Compiler, commmand line arguments")
+        self.parser = argparse.ArgumentParser(
+            description="General Language Compiler, commmand line arguments")
 
         self.parser.add_argument(
             '-if',

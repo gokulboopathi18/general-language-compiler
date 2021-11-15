@@ -3,5 +3,7 @@ class MissingLanguageDeclaration(Exception):
     pass
 
 # invalid language in the language definition statement
+
+
 class InvalidLanguage(Exception):
     pass
