@@ -1,0 +1,12 @@
+#lang:sanskrit
+
+int अ = 5;
+int ब;
+
+(अ == 5) if {
+ब = 1;
+} else {
+ब = 0;
+}
+
+print (ब);
