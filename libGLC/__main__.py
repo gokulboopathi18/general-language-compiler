@@ -17,7 +17,7 @@ translation = {
 }
 
 
-def which(lines):
+def get_language(lines):
     print('identifying language : looking for shebang')
     for line in lines:
         text = line.strip()
@@ -65,12 +65,13 @@ def translate(code, map):
             if i < length:
                 str += " "
 
+            # todo: once the better impementation is done
+                # todo: collect identifiers, build symbol table
+
         # print(str)
         total_code += str+"\n"
 
     return total_code
-
-    # todo for every word in the code that matches something in the map, make the change and store the changed version in
 
 
 def main():
@@ -84,25 +85,28 @@ def main():
     inFile = InputFile(inFileName)
     lines = inFile.file.readlines()
 
+    SOURCE_CODE = lines
+
     # recognize language
     print()
-    lang = which(lines)
+    lang = get_language(SOURCE_CODE)
     if(not lang):
         raise MissingLanguageDeclaration(
             'language declaration statement not found in the beginning of the source code')
     print('language: \"{lang}\"'.format(lang=lang))
 
+    # get translation map
     try:
         trans_map = translation[lang]
+        print('found translation map')
     except:
         raise InvalidLanguage(
             'the language \"${lang}\" is invalid or unsupported'.format(lang=lang))
 
     print()
-    SOURCE_CODE = lines
-    # print(SOURCE_CODE)
+
+    # translate 
     OUTPUT = translate(SOURCE_CODE, trans_map)
-    print(OUTPUT)
     output_file = open("out.glc", "w")
     output_file.write(OUTPUT)
 

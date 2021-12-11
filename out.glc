@@ -1,12 +1,10 @@
-#lang:sanskrit
+#lang:tamil
 
-int अ = 5;
-int ब;
+int எ = 5;
+int பி;
 
-(अ == 5) if {
-ब = 1;
+(எ == 5) if {
+பி = 1;
 } else {
-ब = 0;
+பி = 0;
 }
-
-print (ब);
