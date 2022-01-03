@@ -1,10 +1,14 @@
-#lang:tamil
+#lang:sanskrit
 
-int எ = 5;
-int பி;
+int अ = 5;
+int ब;
 
-(எ == 5) if {
-பி = 1;
+(अ == 5) if {
+print (" यदि ");
+print (" पूर्णाङ्क ");
+ब = 1;
 } else {
-பி = 0;
+ब = 0;
 }
+
+print (ब);

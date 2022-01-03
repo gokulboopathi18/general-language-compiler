@@ -45,16 +45,21 @@ def translate(code, map):
 
         i = 0
         str = ""
+        inside_string = 0
         while i < length:
             two = False
-            if map.__contains__(values[i]):
-                str += map[values[i]]
+            inside_string = inside_string + values[i].count('\"')
+            if inside_string % 2 == 0:
+                if map.__contains__(values[i]):
+                    str += map[values[i]]
 
-            # checking if the current and next word together forms a keyword
-            # todo, check for some better implementation
-            elif i+1 < length and map.__contains__(values[i]+" "+values[i+1]):
-                two = True
-                str += map[values[i]+" "+values[i+1]]
+                # checking if the current and next word together forms a keyword
+                # todo, check for some better implementation
+                elif i+1 < length and map.__contains__(values[i]+" "+values[i+1]):
+                    two = True
+                    str += map[values[i]+" "+values[i+1]]
+                else:
+                    str += values[i]
             else:
                 str += values[i]
 
@@ -105,7 +110,7 @@ def main():
 
     print()
 
-    # translate 
+    # translate
     OUTPUT = translate(SOURCE_CODE, trans_map)
     output_file = open("out.glc", "w")
     output_file.write(OUTPUT)
