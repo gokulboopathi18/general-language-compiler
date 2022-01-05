@@ -4,12 +4,13 @@
 '''
 
 from libGLC.consts import IN_FILE
-from libGLC.defs.sanskrit_def import definitions as sanskrit_translation
-from libGLC.defs.tamil_def import definitions as tamil_translation
+from libGLC.lang_defs.sanskrit.lex_map import definitions as sanskrit_translation
+from libGLC.lang_defs.tamil.lex_map import definitions as tamil_translation
 from libGLC.io import CmdArgs, InputFile
 from libGLC.errors import *
 from libGLC.consts import *
 from libGLC.shared import SOURCE_CODE
+from libGLC.syntax_translator import syntax_translate
 
 translation = {
     "tamil": tamil_translation,
@@ -28,10 +29,10 @@ def get_language(lines):
                 return None
     return None
 
-# code is an array of lines
-# ignore lines that start with a #
 
-
+'''
+    Lexical translation
+'''
 def translate(code, map):
     print('starting lexical translation')
 
@@ -76,8 +77,8 @@ def translate(code, map):
         # print(str)
         total_code += str+"\n"
 
+    print('lexical translation complete\n')
     return total_code
-
 
 def main():
     print('general-language-compiler v1.0.0')
@@ -98,7 +99,7 @@ def main():
     if(not lang):
         raise MissingLanguageDeclaration(
             'language declaration statement not found in the beginning of the source code')
-    print('language: \"{lang}\"'.format(lang=lang))
+    print('language: \"{lang}\"\n'.format(lang=lang))
 
     # get translation map
     try:
@@ -114,6 +115,10 @@ def main():
     OUTPUT = translate(SOURCE_CODE, trans_map)
     output_file = open("out.glc", "w")
     output_file.write(OUTPUT)
+
+
+    IND = syntax_translate(OUTPUT, lang)
+
 
 
 if __name__ == "__main__":
