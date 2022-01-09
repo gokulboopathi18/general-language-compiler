@@ -79,6 +79,81 @@ def translate(code, map):
     return total_code
 
 
+def symbol_extraction(code):
+    # data = file.read()
+    print("Doint symbol extraction")
+    arr = {}
+    flag = 0
+    ind = 0
+    count = 0
+
+    lines = code.split("\n")
+    # print(lines)
+    for each_line in lines:
+        # print(each_line)
+        words = each_line.split()
+        inside_string = 0
+
+        for i in range(len(words)):
+            word = words[i]
+            inside_string = inside_string + word.count('\"')
+            # print(word)
+
+            if inside_string % 2 == 0:
+                if ord(word[0]) > 256:
+                    for j in range(len(word)):
+                        if word[j] != ';':
+                            continue
+                        else:
+                            flag = 1
+                            break
+                    if flag == 0:
+                        for x in range(ind):
+                            if word in arr.keys():
+                                count += 1
+                        if(count == 0):
+                            arr[word] = "t"+str(ind)
+                            ind += 1
+                        else:
+                            count = 0
+
+                    else:
+                        for x in range(ind):
+                            if word in arr.keys():
+                                count += 1
+                        if(count == 0):
+                            arr[word[0:j]] = "t"+str(ind)
+                            ind += 1
+                        else:
+                            count = 0
+                        flag = 0
+                else:
+                    continue
+            else:
+                continue
+
+    print("Symbols = ", arr)
+    return arr
+
+
+def symbol_translation(code, map):
+    output_code = ""
+    print("<< doing symbol translation >>")
+
+    lines = code.split("\n")
+    for each_line in lines:
+        words = each_line.split()
+        for word in words:
+            if map.__contains__(word):
+                output_code += map[word]
+            else:
+                output_code += word
+            output_code += " "
+        output_code += "\n"
+
+    return output_code
+
+
 def main():
     print('general-language-compiler v1.0.0')
 
@@ -111,7 +186,10 @@ def main():
     print()
 
     # translate
-    OUTPUT = translate(SOURCE_CODE, trans_map)
+    INTERMEDIATE = translate(SOURCE_CODE, trans_map)
+
+    new_variables = symbol_extraction(INTERMEDIATE)
+    OUTPUT = symbol_translation(INTERMEDIATE, new_variables)
     output_file = open("out.glc", "w")
     output_file.write(OUTPUT)
 
