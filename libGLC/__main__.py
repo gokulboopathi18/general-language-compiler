@@ -10,6 +10,7 @@ from libGLC.io import CmdArgs, InputFile
 from libGLC.errors import *
 from libGLC.consts import *
 from libGLC.shared import SOURCE_CODE
+from libGLC.utils import stringsplit
 
 translation = {
     "tamil": tamil_translation,
@@ -39,7 +40,7 @@ def translate(code, map):
 
     for line in code:
         # this splits based on white space, if there is no whte space it can't figure out the word
-        values = line.split()
+        values = stringsplit(line)
         length = len(values)
         # print(values)
 
@@ -91,7 +92,8 @@ def symbol_extraction(code):
     # print(lines)
     for each_line in lines:
         # print(each_line)
-        words = each_line.split()
+        #words = each_line.split()
+        words = stringsplit(each_line)
         inside_string = 0
 
         for i in range(len(words)):
@@ -100,7 +102,7 @@ def symbol_extraction(code):
             # print(word)
 
             if inside_string % 2 == 0:
-                if ord(word[0]) > 256:
+                if len(word)>=1 and ord(word[0]) > 256:
                     for j in range(len(word)):
                         if word[j] != ';':
                             continue
@@ -142,7 +144,8 @@ def symbol_translation(code, map):
 
     lines = code.split("\n")
     for each_line in lines:
-        words = each_line.split()
+        #words = each_line.split()
+        words = stringsplit(each_line)
         for word in words:
             if map.__contains__(word):
                 output_code += map[word]

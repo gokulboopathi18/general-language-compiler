@@ -1,14 +1,12 @@
-#lang:sanskrit
+#lang : tamil 
 
-int अ = 5;
-int ब;
+int t0 = 5  ;   
+int t1 ; 
 
-(अ == 5) if {
-print (" यदि ");
-print (" पूर्णाङ्क ");
-ब = 1;
-} else {
-ब = 0;
-}
+( t0 = = 5  )  if {  
+print ( " என்றால் " )  ;    
+t1 = 1 ;    
+} else { 
+t1 = 0 ;    
+} 
 
-print (ब);
