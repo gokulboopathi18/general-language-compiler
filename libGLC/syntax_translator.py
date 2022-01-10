@@ -22,7 +22,7 @@ def syntax_translate(code, lang):
 #include<stdlib.h>
 #include<strings.h>
 
-int main(){
+int main () {
 '''
 
     res += parser.parse(code)

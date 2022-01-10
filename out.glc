@@ -1,11 +1,11 @@
 #lang:tamil
 
-int எ = 5;
-int பி;
+int id1 = 5;
+int id2;
 
-(எ == 5) if {
+(id1 == 5) if {
 print (" என்றால் ");
-பி = 1;
+id2 = 1;
 } else {
-பி = 0;
+id2 = 0;
 }

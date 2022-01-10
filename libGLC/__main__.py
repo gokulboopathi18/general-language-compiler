@@ -2,6 +2,7 @@
     Converts code to an intermediate english-text
     representation
 '''
+import subprocess
 
 from libGLC.consts import IN_FILE
 from libGLC.lang_defs.sanskrit.lex_map import definitions as sanskrit_translation
@@ -118,8 +119,22 @@ def main():
 
 
     IND = syntax_translate(OUTPUT, lang)
-    final_out = open("c_out", 'w')
+    final_out = open("c_out.c", 'w')
     final_out.write(IND)
+    
+
+'''
+
+Todo:
+    subprocess.call(["g++", "-o","output", "c_out.c"])
+    # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
+    tmp = subprocess.call("./output")
+    print("<< Output of the given program >>")
+    print()
+    print(tmp)
+
+'''
+
 
 if __name__ == "__main__":
     main()

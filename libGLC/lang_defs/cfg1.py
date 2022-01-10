@@ -23,7 +23,7 @@ def p_prnt(p):
     '''
         prnt : PRINT LPAREN LITSTRING RPAREN SM
     '''
-    p[0] = "printf(" + p[3] + ")\n"
+    p[0] = "printf(" + p[3] + ");\n"
 
 def p_cond(p):
     '''
