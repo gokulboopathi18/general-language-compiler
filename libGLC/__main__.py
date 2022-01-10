@@ -109,7 +109,7 @@ def symbol_extraction(code):
                             if word in arr.keys():
                                 count += 1
                         if(count == 0):
-                            arr[word] = "t"+str(ind)
+                            arr[word] = "id"+str(ind)
                             ind += 1
                         else:
                             count = 0
@@ -119,7 +119,7 @@ def symbol_extraction(code):
                             if word in arr.keys():
                                 count += 1
                         if(count == 0):
-                            arr[word[0:j]] = "t"+str(ind)
+                            arr[word[0:j]] = "id"+str(ind)
                             ind += 1
                         else:
                             count = 0
@@ -195,6 +195,7 @@ def main():
     INTERMEDIATE = translate(SOURCE_CODE, trans_map)
     inter_output = open("out.language.glc", "w")
     print("<< language translation done, saved in \'out.language.glc\'")
+    OUTPUT_STR = writeArray(INTERMEDIATE)
     inter_output.write(writeArray(INTERMEDIATE))
 
     print()
@@ -210,8 +211,6 @@ def main():
     output_file = open("out.symbol.glc", "w")
     OUTPUT_STR = writeArray(OUTPUT)
     output_file.write(OUTPUT_STR)
-
-
 
     IND = syntax_translate(OUTPUT_STR, lang)
     final_out = open("c_out.c", 'w')

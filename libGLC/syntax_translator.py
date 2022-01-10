@@ -37,7 +37,7 @@ return 0;
         tok = lexer.token()
         if not tok: 
             break      # No more input
-        print(tok)
+        # print(tok)
         
     return res
 

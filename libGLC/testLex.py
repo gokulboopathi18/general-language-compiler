@@ -22,6 +22,7 @@ t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
+
  
  # A regular expression rule with some action code
 def t_NUMBER(t):
@@ -44,6 +45,12 @@ def t_COMMENT(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
+
+def t_percent(t):
+    r'%'
+    print(t)
+    return t
  
  # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'

@@ -4,16 +4,20 @@
 #include<strings.h>
 
 int main () {
-int id1 = 5;
-int id2;
-if(id1==5) {
-	printf(" என்றால் ");
+int id0 = 5;
+int id1;
+if(id0==5) {
+	printf("यदि");
 
-id2 = 1;
+printf("पूर्णाङ्क");
+
+id1 = 1;
 
 } else{
-	id2 = 0;
+	id1 = 0;
 }
+
+printf("%d",id1);
 
 return 0;
 }
