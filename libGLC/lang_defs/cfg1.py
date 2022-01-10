@@ -12,6 +12,7 @@ def p_stmt(p):
              | cond
              | as
              | prnt
+             | forexp
              | stmt stmt
     '''
     if len(p) == 2:
@@ -22,8 +23,15 @@ def p_stmt(p):
 def p_prnt(p):
     '''
         prnt : PRINT LPAREN LITSTRING RPAREN SM
+             | PRINT LPAREN LITSTRING COMMA ID RPAREN SM
+             | PRINT LPAREN LITSTRING COMMA rela RPAREN SM
     '''
-    p[0] = "printf(" + p[3] + ");\n"
+    if len(p) == 8:
+        p[0] = "printf(" + p[3] +","+ p[5]+ ");\n"
+        
+    else:
+        p[0] = "printf(" + p[3] + ");\n"
+        
 
 def p_cond(p):
     '''
@@ -56,6 +64,8 @@ def p_relop(p):
               | GTE
               | AS
               | LTE
+              | LT
+              | GT
     '''
     
     if len(p) == 3:
@@ -93,9 +103,34 @@ def p_expr2NUM( p ) :
     'expr : LITNUM'
     p[0] = p[1]
 
+def p_expr2ID(p):
+    'expr : ID'
+    p[0] = str(p[1])
+
+
 def p_parens( p ) :
     'expr : LPAREN expr RPAREN'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
+
+def p_for( p ) :
+    'forexp : FOR LPAREN vardec rela SM unaryarith RPAREN LBRACE stmt RBRACE'
+
+    p[0] = str(p[1]) + " " + str(p[2])+str(p[3])+ " " + str(p[4])+str(p[5])+ " " +str(p[6])+str(p[7])+"\n"+str(p[8])+str(p[9])+str(p[10])
+
+def p_unaryarith( p ):
+    '''
+        unaryarith : ID INC
+                   | ID DEC
+                   | DEC ID
+                   | INC ID
+                   | ID AS expr
+    '''
+
+    if len(p)==3:
+        p[0] = str(p[1])+str(p[2])
+    else:
+        p[0] = str(p[1])+str(p[2])+str(p[3])
+
 def p_error( p ):
-    print("Syntax error in input!")
+    print("Syntax error in input! : ", p)
