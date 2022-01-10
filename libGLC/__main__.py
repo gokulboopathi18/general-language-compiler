@@ -140,8 +140,14 @@ def symbol_translation(code, map):
     i = 0
     for each_line in code:
         j = 0
+        inside_string = 0
+        comm = False
+
         for word in each_line:
-            if map.__contains__(word):
+            inside_string = inside_string + word.count('\"')
+            if word == "#":
+                comm = True
+            if comm==False and inside_string%2==0 and map.__contains__(word):
                 code[i][j] = map[word]
             j+=1     
         i+=1
