@@ -2,15 +2,18 @@
     Converts code to an intermediate english-text
     representation
 '''
+import subprocess
 
 from libGLC.consts import IN_FILE
-from libGLC.defs.sanskrit_def import definitions as sanskrit_translation
-from libGLC.defs.tamil_def import definitions as tamil_translation
+from libGLC.lang_defs.sanskrit.lex_map import definitions as sanskrit_translation
+from libGLC.lang_defs.tamil.lex_map import definitions as tamil_translation
 from libGLC.io import CmdArgs, InputFile
 from libGLC.errors import *
 from libGLC.consts import *
 from libGLC.shared import SOURCE_CODE
+from libGLC.syntax_translator import syntax_translate
 from libGLC.utils import stringsplit, writeArray
+
 
 translation = {
     "tamil": tamil_translation,
@@ -29,10 +32,10 @@ def get_language(lines):
                 return None
     return None
 
-# code is an array of lines
-# ignore lines that start with a #
 
-
+'''
+    Lexical translation
+'''
 def translate(code, map):
     total_code = []
 
@@ -71,6 +74,7 @@ def translate(code, map):
 
         total_code.append(cur_line)
 
+    print('lexical translation complete\n')
     return total_code
 
 
@@ -155,7 +159,6 @@ def symbol_translation(code, map):
 
     return code
 
-
 def main():
     print('general-language-compiler v1.0.0')
 
@@ -175,7 +178,7 @@ def main():
     if(not lang):
         raise MissingLanguageDeclaration(
             'language declaration statement not found in the beginning of the source code')
-    print('language: \"{lang}\"'.format(lang=lang))
+    print('language: \"{lang}\"\n'.format(lang=lang))
 
     # get translation map
     try:
@@ -207,6 +210,24 @@ def main():
     output_file = open("out.symbol.glc", "w")
     output_file.write(writeArray(OUTPUT))
 
+
+
+    IND = syntax_translate(OUTPUT, lang)
+    final_out = open("c_out.c", 'w')
+    final_out.write(IND)
+    
+
+'''
+
+Todo:
+    subprocess.call(["g++", "-o","output", "c_out.c"])
+    # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
+    tmp = subprocess.call("./output")
+    print("<< Output of the given program >>")
+    print()
+    print(tmp)
+
+'''
 
 
 if __name__ == "__main__":

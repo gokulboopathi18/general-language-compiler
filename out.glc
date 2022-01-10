@@ -1,4 +1,5 @@
-#lang:sanskrit
+#lang:tamil
+
 
 int t0 = 5;
 int t1;
