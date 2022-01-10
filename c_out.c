@@ -7,17 +7,13 @@ int main () {
 int id0 = 5;
 int id1;
 if(id0==5) {
-	printf("यदि");
-
-printf("पूर्णाङ्क");
+	printf("எ என்றால் முழு எண் பி");
 
 id1 = 1;
 
 } else{
 	id1 = 0;
 }
-
-printf("%d",id1);
 
 return 0;
 }

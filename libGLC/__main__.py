@@ -213,16 +213,21 @@ def main():
     output_file.write(OUTPUT_STR)
 
     IND = syntax_translate(OUTPUT_STR, lang)
+
+    print("\n>> Syntax translation done and saved in \'c_out.c\'")
+    
     final_out = open("c_out.c", 'w')
     final_out.write(IND)
-    
+    final_out.close()
 
-    subprocess.call(["gcc", "c_out.c"])
+    print("\n>> $gcc c_out.c")
+    tmp = subprocess.call("gcc c_out.c;", shell=True)
+    
     # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
-    tmp = subprocess.call("./a.out")
-    print("<< Output of the given program >>")
+    print("\n>> ./a.out")
     print()
-    print(tmp)
+    tmp = subprocess.call("./a.out", shell=True)
+    print()
 
 
 if __name__ == "__main__":
