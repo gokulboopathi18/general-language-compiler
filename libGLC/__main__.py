@@ -34,9 +34,6 @@ def get_language(lines):
 
 
 def translate(code, map):
-    print('starting lexical translation')
-
-    # total_code = ""
     total_code = []
 
     for line in code:
@@ -48,15 +45,17 @@ def translate(code, map):
         i = 0
         cur_line = []
         inside_string = 0
+        comm = False
         while i < length:
             two = False
-            inside_string = inside_string + values[i].count('\"')
-            if inside_string % 2 == 0:
+            inside_string = inside_string + values[i].count('\"')   #avoids converting character if it is inside a string
+            if values[i] == "#":
+                comm = True
+            if inside_string % 2 == 0 and comm==False:
                 if map.__contains__(values[i]):
                     cur_line.append(map[values[i]])
 
                 # checking if the current and next word together forms a keyword
-                # todo, check for some better implementation
                 elif i+2 < length and map.__contains__(values[i]+" "+values[i+2]):
                     two = True
                     cur_line.append(map[values[i]+" "+values[i+2]])
@@ -70,18 +69,12 @@ def translate(code, map):
             else:
                 i += 1
 
-            # todo: once the better impementation is done
-                # todo: collect identifiers, build symbol table
-
-        # print(str)
         total_code.append(cur_line)
 
     return total_code
 
 
 def symbol_extraction(code):
-    # data = file.read()
-    print("Doint symbol extraction")
     arr = {}
     flag = 0
     ind = 0
@@ -89,17 +82,18 @@ def symbol_extraction(code):
 
 
     for each_line in code:
-        # print(each_line)
-        #words = each_line.split()
+
         words = each_line
         inside_string = 0
+        comm = False
 
         for i in range(len(words)):
             word = words[i]
             inside_string = inside_string + word.count('\"')
-            # print(word)
+            if word == "#":
+                comm = True
 
-            if inside_string % 2 == 0:
+            if inside_string % 2 == 0 and comm==False:
                 if len(word)>=1 and ord(word[0]) > 256:
                     for j in range(len(word)):
                         if word[j] != ';':
@@ -132,24 +126,24 @@ def symbol_extraction(code):
             else:
                 continue
 
-    print("Symbols = ", arr)
+    print(">> Symbols with their changed english variable names\n")
+
+    print(">>\tSymbol\t\tVariable")
+    print("======================================")
+    for key in arr:
+        print(">>\t", key, "\t\t", arr[key])
+
     return arr
 
 
 def symbol_translation(code, map):
-    print("<< doing symbol translation >>")
-
     i = 0
     for each_line in code:
-        #words = each_line.split()
-        # words = stringsplit(each_line)
         j = 0
         for word in each_line:
             if map.__contains__(word):
                 code[i][j] = map[word]
-
-            j+=1
-        
+            j+=1     
         i+=1
 
 
@@ -189,14 +183,23 @@ def main():
     print()
 
     # translate
+    print("<< Starting Language translation >>")
     INTERMEDIATE = translate(SOURCE_CODE, trans_map)
-
     inter_output = open("out.language.glc", "w")
+    print("<< language translation done, saved in \'out.language.glc\'")
     inter_output.write(writeArray(INTERMEDIATE))
 
+    print()
+    print("<< Starting symbol extraction >>")
     new_variables = symbol_extraction(INTERMEDIATE)
+
+    print()
+    print("<< Doing symbol translation >>")
     OUTPUT = symbol_translation(INTERMEDIATE, new_variables)
-    output_file = open("out.glc", "w")
+
+    print("<< symbol translation done, saved in \'out.symbol.glc\'")
+
+    output_file = open("out.symbol.glc", "w")
     output_file.write(writeArray(OUTPUT))
 
 
