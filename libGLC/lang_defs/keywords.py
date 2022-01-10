@@ -149,7 +149,7 @@ t_RBRACKET  = r'\]'
 'LITNUM', 'LITCHAR', 'LITSTRING' 
 # literals
 def t_LITNUM(t):
-    r'[\+\-]?\d+'
+    r'\d+'
     t.value = int(t.value)    
     return t
 

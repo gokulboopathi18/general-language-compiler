@@ -118,8 +118,8 @@ def main():
 
 
     IND = syntax_translate(OUTPUT, lang)
-
-
+    final_out = open("c_out", 'w')
+    final_out.write(IND)
 
 if __name__ == "__main__":
     main()
