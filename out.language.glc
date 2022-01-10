@@ -1,14 +1,14 @@
 #lang:sanskrit
 
-int t0 = 5;
-int t1;
+int अ = 5;
+int ब;
 
-(t0==5) if {
+(अ==5) if {
     print("यदि");
     print("पूर्णाङ्क");
-    t1 = 1;
+    ब = 1;
 } else {
-    t1 = 0;
+    ब = 0;
 }
 
-print (t1);
+print (ब);
