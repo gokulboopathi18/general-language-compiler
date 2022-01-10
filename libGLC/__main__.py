@@ -45,13 +45,13 @@ def translate(code, map):
         i = 0
         cur_line = []
         inside_string = 0
-        # comm = False
+        comm = False
         while i < length:
             two = False
             inside_string = inside_string + values[i].count('\"')   #avoids converting character if it is inside a string
             if values[i] == "#":
-                break
-            if inside_string % 2 == 0 :
+                comm = True
+            if comm == False and inside_string % 2 == 0 :
                 if map.__contains__(values[i]):
                     cur_line.append(map[values[i]])
 
