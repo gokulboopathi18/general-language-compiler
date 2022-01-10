@@ -2,21 +2,21 @@
 
 # முதல் மற்றும் இரண்டாம் எங்களை விவரிக்கிறோம்
 
-int t0 = 0;
-int t1 = 1;
-int t2 = 1;
+int id0 = 0;
+int id1 = 1;
+int id2 = 1;
 
 # அச்சு (" எத்தனை எங்கள் வரை பிபோனச்சி எங்களை அச்சு செய்வது ?: ");
 
-int t3 = 10;
+int id3 = 10;
 
-print ("%d முறை பிபோனச்சி எண்கள்: \n", t3+2);
-print ("%d ", t0);
-print ("%d ", t1);
-for (int t4 = 0; t4 < t3; t4++){
-    t2 = t0 + t1;
-    print ("%d ", t2);
-    t0 = t1;
-    t1 = t2;
+print ("%d முறை பிபோனச்சி எண்கள்: \n", id3+2);
+print ("%d ", id0);
+print ("%d ", id1);
+for (int id4 = 0; id4 < id3; id4++){
+    id2 = id0 + id1;
+    print ("%d ", id2);
+    id0 = id1;
+    id1 = id2;
 }
 print ("\n");

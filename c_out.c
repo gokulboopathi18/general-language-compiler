@@ -4,15 +4,15 @@
 #include<strings.h>
 
 int main () {
-int id1 = 5;
-int id2;
-if(id1==5) {
-	printf(" என்றால் ");
+int id0 = 5;
+int id1;
+if(id0==5) {
+	printf("எ என்றால் முழு எண் பி");
 
-id2 = 1;
+id1 = 1;
 
 } else{
-	id2 = 0;
+	id1 = 0;
 }
 
 return 0;

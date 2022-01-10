@@ -109,7 +109,7 @@ def symbol_extraction(code):
                             if word in arr.keys():
                                 count += 1
                         if(count == 0):
-                            arr[word] = "t"+str(ind)
+                            arr[word] = "id"+str(ind)
                             ind += 1
                         else:
                             count = 0
@@ -119,7 +119,7 @@ def symbol_extraction(code):
                             if word in arr.keys():
                                 count += 1
                         if(count == 0):
-                            arr[word[0:j]] = "t"+str(ind)
+                            arr[word[0:j]] = "id"+str(ind)
                             ind += 1
                         else:
                             count = 0
@@ -195,6 +195,7 @@ def main():
     INTERMEDIATE = translate(SOURCE_CODE, trans_map)
     inter_output = open("out.language.glc", "w")
     print("<< language translation done, saved in \'out.language.glc\'")
+    OUTPUT_STR = writeArray(INTERMEDIATE)
     inter_output.write(writeArray(INTERMEDIATE))
 
     print()
@@ -211,24 +212,22 @@ def main():
     OUTPUT_STR = writeArray(OUTPUT)
     output_file.write(OUTPUT_STR)
 
-
-
     IND = syntax_translate(OUTPUT_STR, lang)
+
+    print("\n>> Syntax translation done and saved in \'c_out.c\'")
+    
     final_out = open("c_out.c", 'w')
     final_out.write(IND)
+    final_out.close()
+
+    print("\n>> $gcc c_out.c")
+    tmp = subprocess.call("gcc c_out.c;", shell=True)
     
-
-'''
-
-Todo:
-    subprocess.call(["g++", "-o","output", "c_out.c"])
     # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
-    tmp = subprocess.call("./output")
-    print("<< Output of the given program >>")
+    print("\n>> ./a.out")
     print()
-    print(tmp)
-
-'''
+    tmp = subprocess.call("./a.out", shell=True)
+    print()
 
 
 if __name__ == "__main__":
