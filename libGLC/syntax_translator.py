@@ -20,7 +20,7 @@ def syntax_translate(code, lang):
     res = '''
 #include<stdio.h>
 #include<stdlib.h>
-#inlude<strings.h>
+#include<strings.h>
 
 int main(){
 '''
