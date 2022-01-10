@@ -24,7 +24,7 @@ def p_prnt(p):
     '''
         prnt : PRINT LPAREN LITSTRING RPAREN SM
              | PRINT LPAREN LITSTRING COMMA ID RPAREN SM
-             | PRINT LPAREN LITSTRING COMMA rela RPAREN SM
+             | PRINT LPAREN LITSTRING COMMA expr RPAREN SM
     '''
     if len(p) == 8:
         p[0] = "printf(" + p[3] +","+ p[5]+ ");\n"

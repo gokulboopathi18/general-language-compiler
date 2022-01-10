@@ -4,6 +4,12 @@
 #include<strings.h>
 
 int main () {
+int id0 = 0;
+int id1 = 1;
+int id2 = 1;
+int id3 = 10;
+printf("%d முறை பிபோனச்சி எண்கள்: \n",id3+2);
+
 printf("%d ",id0);
 
 printf("%d ",id1);

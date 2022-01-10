@@ -217,17 +217,12 @@ def main():
     final_out.write(IND)
     
 
-'''
-
-Todo:
-    subprocess.call(["g++", "-o","output", "c_out.c"])
+    subprocess.call(["gcc", "c_out.c"])
     # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
-    tmp = subprocess.call("./output")
+    tmp = subprocess.call("./a.out")
     print("<< Output of the given program >>")
     print()
     print(tmp)
-
-'''
 
 
 if __name__ == "__main__":
