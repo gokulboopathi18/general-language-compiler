@@ -208,11 +208,12 @@ def main():
     print("<< symbol translation done, saved in \'out.symbol.glc\'")
 
     output_file = open("out.symbol.glc", "w")
-    output_file.write(writeArray(OUTPUT))
+    OUTPUT_STR = writeArray(OUTPUT)
+    output_file.write(OUTPUT_STR)
 
 
 
-    IND = syntax_translate(OUTPUT, lang)
+    IND = syntax_translate(OUTPUT_STR, lang)
     final_out = open("c_out.c", 'w')
     final_out.write(IND)
     
