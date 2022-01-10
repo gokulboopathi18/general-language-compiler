@@ -11,9 +11,20 @@ def remove_items(test_list, item):
     return test_list
 
 def stringsplit(string):
-    words = re.split("([ \n\t\(\)\"\'=+*-;:]|==)", string)
-    remove_items(words, " ")
+    words = re.split("([ \n\t\(\)\"\'=+*-;:<>\|\&\{\}])", string)
+    # remove_items(words, " ")
     remove_items(words, "")
-    remove_items(words, "\t")
-    remove_items(words, "\n")
+    # remove_items(words, "\t")
+    # remove_items(words, "\n")
     return words
+
+
+def writeArray(code):
+    total_code = ""
+    for line in code:
+        cur_str = ""
+        for word in line:
+            cur_str +=word
+
+        total_code+=cur_str
+    return total_code

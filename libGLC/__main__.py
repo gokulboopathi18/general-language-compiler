@@ -10,7 +10,7 @@ from libGLC.io import CmdArgs, InputFile
 from libGLC.errors import *
 from libGLC.consts import *
 from libGLC.shared import SOURCE_CODE
-from libGLC.utils import stringsplit
+from libGLC.utils import stringsplit, writeArray
 
 translation = {
     "tamil": tamil_translation,
@@ -36,7 +36,8 @@ def get_language(lines):
 def translate(code, map):
     print('starting lexical translation')
 
-    total_code = ""
+    # total_code = ""
+    total_code = []
 
     for line in code:
         # this splits based on white space, if there is no whte space it can't figure out the word
@@ -45,37 +46,35 @@ def translate(code, map):
         # print(values)
 
         i = 0
-        str = ""
+        cur_line = []
         inside_string = 0
         while i < length:
             two = False
             inside_string = inside_string + values[i].count('\"')
             if inside_string % 2 == 0:
                 if map.__contains__(values[i]):
-                    str += map[values[i]]
+                    cur_line.append(map[values[i]])
 
                 # checking if the current and next word together forms a keyword
                 # todo, check for some better implementation
-                elif i+1 < length and map.__contains__(values[i]+" "+values[i+1]):
+                elif i+2 < length and map.__contains__(values[i]+" "+values[i+2]):
                     two = True
-                    str += map[values[i]+" "+values[i+1]]
+                    cur_line.append(map[values[i]+" "+values[i+2]])
                 else:
-                    str += values[i]
+                    cur_line.append(values[i])
             else:
-                str += values[i]
+                cur_line.append(values[i])
 
             if two:
-                i += 2
+                i += 3
             else:
                 i += 1
-            if i < length:
-                str += " "
 
             # todo: once the better impementation is done
                 # todo: collect identifiers, build symbol table
 
         # print(str)
-        total_code += str+"\n"
+        total_code.append(cur_line)
 
     return total_code
 
@@ -88,12 +87,11 @@ def symbol_extraction(code):
     ind = 0
     count = 0
 
-    lines = code.split("\n")
-    # print(lines)
-    for each_line in lines:
+
+    for each_line in code:
         # print(each_line)
         #words = each_line.split()
-        words = stringsplit(each_line)
+        words = each_line
         inside_string = 0
 
         for i in range(len(words)):
@@ -139,22 +137,24 @@ def symbol_extraction(code):
 
 
 def symbol_translation(code, map):
-    output_code = ""
     print("<< doing symbol translation >>")
 
-    lines = code.split("\n")
-    for each_line in lines:
+    i = 0
+    for each_line in code:
         #words = each_line.split()
-        words = stringsplit(each_line)
-        for word in words:
+        # words = stringsplit(each_line)
+        j = 0
+        for word in each_line:
             if map.__contains__(word):
-                output_code += map[word]
-            else:
-                output_code += word
-            output_code += " "
-        output_code += "\n"
+                code[i][j] = map[word]
 
-    return output_code
+            j+=1
+        
+        i+=1
+
+
+
+    return code
 
 
 def main():
@@ -191,10 +191,14 @@ def main():
     # translate
     INTERMEDIATE = translate(SOURCE_CODE, trans_map)
 
+    inter_output = open("out.language.glc", "w")
+    inter_output.write(writeArray(INTERMEDIATE))
+
     new_variables = symbol_extraction(INTERMEDIATE)
     OUTPUT = symbol_translation(INTERMEDIATE, new_variables)
     output_file = open("out.glc", "w")
-    output_file.write(OUTPUT)
+    output_file.write(writeArray(OUTPUT))
+
 
 
 if __name__ == "__main__":
