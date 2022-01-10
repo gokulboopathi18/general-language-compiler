@@ -45,13 +45,13 @@ def translate(code, map):
         i = 0
         cur_line = []
         inside_string = 0
-        comm = False
+        # comm = False
         while i < length:
             two = False
             inside_string = inside_string + values[i].count('\"')   #avoids converting character if it is inside a string
             if values[i] == "#":
-                comm = True
-            if inside_string % 2 == 0 and comm==False:
+                break
+            if inside_string % 2 == 0 :
                 if map.__contains__(values[i]):
                     cur_line.append(map[values[i]])
 
@@ -85,15 +85,14 @@ def symbol_extraction(code):
 
         words = each_line
         inside_string = 0
-        comm = False
 
         for i in range(len(words)):
             word = words[i]
             inside_string = inside_string + word.count('\"')
             if word == "#":
-                comm = True
+                break
 
-            if inside_string % 2 == 0 and comm==False:
+            if inside_string % 2 == 0:
                 if len(word)>=1 and ord(word[0]) > 256:
                     for j in range(len(word)):
                         if word[j] != ';':
@@ -140,8 +139,14 @@ def symbol_translation(code, map):
     i = 0
     for each_line in code:
         j = 0
+        inside_string = 0
+        # comm = False
+
         for word in each_line:
-            if map.__contains__(word):
+            inside_string = inside_string + word.count('\"')
+            if word == "#":
+                break
+            if inside_string%2==0 and map.__contains__(word):
                 code[i][j] = map[word]
             j+=1     
         i+=1
