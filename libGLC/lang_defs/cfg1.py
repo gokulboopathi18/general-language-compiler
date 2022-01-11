@@ -152,5 +152,55 @@ def p_unaryarith( p ):
     else:
         p[0] = str(p[1])+str(p[2])+str(p[3])
 
+def p_unu( p ):
+    '''
+        unu : AND 
+            | AUTO
+            | BREAK
+            | CASE
+            | CHAR
+            | COLON
+            | COMMENT
+            | COND_TERN
+            | CONST
+            | CONTINUE
+            | DEFAULT
+            | DO
+            | DOT
+            | DOUBLE
+            | END
+            | EQ
+            | EXTERM
+            | FLOAT
+            | FUNCTION
+            | GOTO
+            | KEY
+            | LBRACKET
+            | RBRACKET
+            | LITCHAR
+            | LONG
+            | MOD
+            | NOT
+            | OR
+            | REGISTER
+            | REST
+            | RETURN
+            | SHORT
+            | SIGNED
+            | SIZEOF
+            | STATIC
+            | STRUCT
+            | SWITCH
+            | TYPEDEF
+            | UNION
+            | UNSIGNED
+            | VARIABLE
+            | VOID
+            | VOLATILE
+            | WHILE
+            | BXOR
+    '''
+
 def p_error( p ):
     print("Syntax error in input! : ", p)
+    exit()

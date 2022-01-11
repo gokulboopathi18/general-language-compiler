@@ -4,20 +4,34 @@
 #include<strings.h>
 
 int main () {
-int id0 = 5;
-int id1;
-if(id0==5) {
-	printf("यदि");
+printf("வணக்கம் - இரு நிலை எண்கள் பாடம்");
 
-printf("पूर्णाङ्क");
+int id0 = 60;
+int id1 = 13;
+int id2 = 0;
+id2 = id0&id1;
 
-id1 = 1;
+printf("Line 1 - மதிப்பு of இ is %d\n",id2);
 
-} else{
-	id1 = 0;
-}
+id2 = id0|id1;
 
-printf("%d",id1);
+printf("Line 2 - மதிப்பு of இ is %d\n",id2);
+
+id2 = id0^id1;
+
+printf("Line 3 - மதிப்பு of இ is %d\n",id2);
+
+id2 = ~id0;
+
+printf("Line 4 - மதிப்பு of இ is %d\n",id2);
+
+id2 = id0<<2;
+
+printf("Line 5 - மதிப்பு of இ is %d\n",id2);
+
+id2 = id0>>2;
+
+printf("Line 6 - மதிப்பு of இ is %d\n",id2);
 
 return 0;
 }
