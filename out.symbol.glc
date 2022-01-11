@@ -1,16 +1,9 @@
-#lang:sanskrit
+#lang:tamil
 
-# भाष्य यदि
+# இங்கு அரைப்புள்ளி (;) எழுத வில்லை
 
-int id0 = 5;
+int id0 = 5
+
 int id1;
-
-(id0==5) if {
-    print("यदि");
-    print("पूर्णाङ्क");
-    id1 = 1;
-} else {
-    id1 = 0;
-}
 
 print ("%d", id1);

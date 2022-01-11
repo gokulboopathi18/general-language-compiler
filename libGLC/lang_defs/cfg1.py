@@ -154,3 +154,4 @@ def p_unaryarith( p ):
 
 def p_error( p ):
     print("Syntax error in input! : ", p)
+    exit()
