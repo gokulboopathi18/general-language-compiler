@@ -5,8 +5,8 @@ import libGLC.lang_defs.keywords as keywords
 import libGLC.lang_defs.cfg1 as cfg1
 
 # Build the lexer
-lexer = lex.lex(module=keywords)
-parser = yacc.yacc(module=cfg1)
+lexer = lex.lex(module=keywords, nowarn=True)
+parser = yacc.yacc(module=cfg1, )
 
 def syntax_translate(code, lang):
     print('starting syntax translation for lang : {lang}'.format(lang = lang))
