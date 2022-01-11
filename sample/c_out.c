@@ -4,26 +4,45 @@
 #include<strings.h>
 
 int main () {
-int id0 = 0;
-int id1 = 1;
-int id2 = 1;
-int id3 = 10;
-printf("%d முறை பிபோனச்சி எண்கள்: \n",id3);
+double id0 = 9;
+double id1 = 24;
+double id2 = 10;
+double id3;
+double id4;
+double id5;
+id3 = id1*id1-4*id0*id2;
 
-printf("%d ",id0);
+printf("<<श्रीधराचर्यः सूत्रम्>>\n");
 
-printf("%d ",id1);
+printf("अ = %lf \n",id0);
 
-for (int id4 = 0; id4<id3; id4++)
-{id2 = id0+id1;
+printf("ब = %lf \n",id1);
 
-printf("%d ",id2);
+printf("स = %lf \n",id2);
 
-id0 = id1;
+printf("द = ब * ब - 4 * अ * स ; (discriminiant) द = %lf \n",id3);
 
-id1 = id2;
+if(id3>0) {
+	id4 = (-id1+(id3)/(2*id0));
+
+id5 = (-id1-(id3)/(2*id0));
+
+printf("\n>> मूल1 = %lf, ",id4);
+
+printf("मूल2 = %lf \n",id5);
+
+} else{
+	if(id3==0) {
+	id4 = -id1/(2*id0);
+
+printf("\n>> मूल1 = %lf, ",id4);
+
+printf("मूल2 = %lf \n",id4);
+
+} else{
+	printf("मान्य मूलं नास्ति (NOT VALID DISCRIMINANT) \n");
 }
-printf("\n");
+}
 
 return 0;
 }
