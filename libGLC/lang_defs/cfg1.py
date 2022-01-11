@@ -107,6 +107,26 @@ def p_expr2ID(p):
     'expr : ID'
     p[0] = str(p[1])
 
+def p_bit(p):
+    '''
+        expr : expr bitwise expr
+             | BNOT expr
+    '''
+    if len(p)==4:
+        p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    else:
+        p[0] = str(p[1]) + str(p[2])
+
+def p_bitwise(p):
+    '''
+        bitwise :   BAND
+                |   BOR
+                |   EXP
+                |   BLS
+                |   BRS
+    '''
+    p[0] = str(p[1])
+
 
 def p_parens( p ) :
     'expr : LPAREN expr RPAREN'
