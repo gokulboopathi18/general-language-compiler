@@ -77,6 +77,8 @@ def p_vardec(p):
     '''
         vardec : INT ID AS LITNUM SM
                | INT ID SM
+               | DOUBLE ID AS LITNUM SM
+               | DOUBLE ID SM
     '''
     if len(p) == 6:
         p[0] = str(p[1]) + " " + str(p[2]) + " " +  str(p[3]) + " " +  str(p[4]) + str(p[5])
@@ -93,6 +95,7 @@ def p_sub( p ) :
 
 def p_expr2uminus( p ) :
     'expr : MINUS expr %prec UMINUS'
+    p[0] = "-"+str(p[2])
 
 def p_mult_div( p ) :
     '''expr : expr MUL expr

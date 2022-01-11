@@ -12,10 +12,8 @@ def remove_items(test_list, item):
 
 def stringsplit(string):
     words = re.split("([ \n\t\(\)\"\'=+*-;:<>\|\&\{\}#\~])", string)
-    # remove_items(words, " ")
     remove_items(words, "")
-    # remove_items(words, "\t")
-    # remove_items(words, "\n")
+
     return words
 
 

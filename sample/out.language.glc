@@ -1,19 +1,37 @@
-#lang:tamil
+#lang:sanskrit
+
+# श्रीधराचर्यः सूत्रम् 
+
+double अ = 9;
+double ब = 24;
+double स = 10;
+
+double द;
+double मूल;
+double मूल्य;
+
+द = ब * ब - 4 * अ * स ;
+
+print("<<श्रीधराचर्यः सूत्रम्>>\n");
+print("अ = %lf \n", अ );
+print("ब = %lf \n", ब );
+print("स = %lf \n", स );
+print("द = ब * ब - 4 * अ * स ; (discriminiant) द = %lf \n", द);
 
 
-int முதல் = 0;
-int இரண்டு = 1;
-int மூன்று = 1;
+(द > 0) if {
+    # todo implement sqrt
+    मूल = (-ब + (द)/(2 * अ));
+    मूल्य = (-ब - (द)/(2 * अ));
 
-int முறை = 10;
-
-print ("%d முறை பிபோனச்சி எண்கள்: \n", முறை);
-print ("%d ", முதல்);
-print ("%d ", இரண்டு);
-for (int ஐ = 0; ஐ < முறை; ஐ++){
-    மூன்று = முதல் + இரண்டு;
-    print ("%d ", மூன்று);
-    முதல் = இரண்டு;
-    இரண்டு = மூன்று;
+    print ("\n>> मूल1 = %lf, ", मूल);
+    print ("मूल2 = %lf \n", मूल्य);
+} else {
+    (द == 0 ) if {
+        मूल = -ब / (2 * अ );
+        print ("\n>> मूल1 = %lf, ", मूल);
+        print ("मूल2 = %lf \n", मूल);
+    } else {
+        print ("मान्य मूलं नास्ति (NOT VALID DISCRIMINANT) \n");
+    }
 }
-print ("\n");
