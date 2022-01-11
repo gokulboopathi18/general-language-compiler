@@ -144,7 +144,6 @@ def symbol_translation(code, map):
     for each_line in code:
         j = 0
         inside_string = 0
-        # comm = False
 
         for word in each_line:
             inside_string = inside_string + word.count('\"')
@@ -154,9 +153,6 @@ def symbol_translation(code, map):
                 code[i][j] = map[word]
             j+=1     
         i+=1
-
-
-
     return code
 
 def main():
@@ -197,6 +193,7 @@ def main():
     print("<< language translation done, saved in \'out.language.glc\'")
     OUTPUT_STR = writeArray(INTERMEDIATE)
     inter_output.write(writeArray(INTERMEDIATE))
+    inter_output.close()
 
     print()
     print("<< Starting symbol extraction >>")
@@ -221,12 +218,11 @@ def main():
     final_out.close()
 
     print("\n>> $gcc c_out.c")
-    tmp = subprocess.call("gcc c_out.c;", shell=True)
+    subprocess.call("gcc c_out.c;", shell=True)
     
-    # subprocess.call(["g", "c_out.c", "-o", "output", "-std=c99", '-w', '-Ofast']) 
     print("\n>> ./a.out")
     print()
-    tmp = subprocess.call("./a.out", shell=True)
+    subprocess.call("./a.out", shell=True)
     print()
 
 

@@ -5,7 +5,6 @@
 double id0 = 9;
 double id1 = 24;
 double id2 = 10;
-
 double id3;
 double id4;
 double id5;
@@ -17,7 +16,6 @@ print("अ = %lf \n", id0 );
 print("ब = %lf \n", id1 );
 print("स = %lf \n", id2 );
 print("द = ब * ब - 4 * अ * स ; (discriminiant) द = %lf \n", id3);
-
 
 (id3 > 0) if {
     # todo implement sqrt

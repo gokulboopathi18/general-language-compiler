@@ -5,7 +5,6 @@
 double अ = 9;
 double ब = 24;
 double स = 10;
-
 double द;
 double मूल;
 double मूल्य;
@@ -17,7 +16,6 @@ print("अ = %lf \n", अ );
 print("ब = %lf \n", ब );
 print("स = %lf \n", स );
 print("द = ब * ब - 4 * अ * स ; (discriminiant) द = %lf \n", द);
-
 
 (द > 0) if {
     # todo implement sqrt
